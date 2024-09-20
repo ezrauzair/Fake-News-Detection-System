@@ -28,6 +28,7 @@ This project leverages a fine-tuned BERT model to detect whether an article is f
 * Matplotlib
 
 🖼️ Screenshots
+
  🧠 Fake News Detection Results
   ![image](https://github.com/user-attachments/assets/775c0680-2b7f-44fa-a2f3-f075aa6e4634)
  📊 Confidence Pie Chart
