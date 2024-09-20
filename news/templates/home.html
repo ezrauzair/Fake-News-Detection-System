@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css.css' %}">
+
+
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="wholepage">
+        <section id="home">
+            <div class="line0"></div>
+            <div class="dashboard">
+                <div class="header">
+                    <div class="logo">
+
+                    </div>
+                    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+                    <nav class="mobile-menu" id="mobileMenu">
+                        <div class="menue">
+                            <a href="#home">Home</a>
+                            <a href="#results">Analytics</a>
+                            <a href="#fotter">About</a>
+                        </div>
+
+                </div>
+
+                <div class="heading">
+                    <h1 style="color: #f4ab1a;">Fake</h1>
+                    <h1>News</h1>
+                    <h1>Detection</h1>
+                    <h1>System</h1>
+                </div>
+
+
+                <form method="post" action="{% url 'bulletchart' %}">
+                    {% csrf_token %}
+                    <textarea name="news" placeholder="Paste your news here" rows="4" cols="50"></textarea>
+                    <button id="pitchButton" class="processbutton" type="submit" name="process">Start the
+                        Process</button>
+
+                </form>
+
+                <div id="message-container" class="messages">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                    {% endif %}
+
+
+                    <script>
+                        document.getElementById('pitchButton').onclick = function (event) {
+                            event.preventDefault(); // Prevent the default form submission
+
+                            clearAllMessages(); // Clear messages
+                        }
+
+                    </script>
+                    <script>
+                        document.getElementById('pitchButton').onclick = function () {
+                            var progressContainer = document.getElementById('progressContainer');
+                            if (progressContainer) {
+                                progressContainer.style.display = 'block';
+                            }
+                        };
+                    </script>
+                    <script>
+                        function toggleMenu() {
+                            const menu = document.querySelector('.menue');
+                            menu.classList.toggle('show');
+                        }
+                    </script>
+                    <script>
+                        function toggleMenu() {
+                            const menu = document.getElementById('mobileMenu');
+                            menu.classList.toggle('show');
+                        }
+
+                    </script>
+                    <script src="scripts.js"></script>
+
+
+
+                </div>
+
+
+                <div class="progress-bar" id="progressContainer" style="display: none;"></div>
+                {% if Real%}
+                <div class="resulttrue">
+                    <div class="true">
+                        Real
+                    </div>
+                </div>
+                {% endif %}
+
+
+                {% if Fake %}
+                <div class="resultfake">
+                    <div class="fake">
+                        Fake
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </section>
+
+        <div class="line1">
+        </div>
+
+        <section id="results">
+            <div class="middle">
+                <div class="info">
+                    <h2>Welcome to Our Fake News Detection Platform</h2>
+                    <h4>
+                        Welcome to our Fake News Detection website! Our site leverages the powerful BERT model, trained
+                        on
+                        an extensive and robust dataset from Kaggle, achieving an impressive accuracy of 97%. By using
+                        state-of-the-art machine learning techniques, we aim to provide accurate and reliable fake news
+                        detection to help you navigate the vast sea of information online. Explore our tool and stay
+                        informed with confidence. Check out our project on GitHub and the Kaggle Dataset.
+                    </h4>
+                </div>
+                <div class="chart">
+                    {% if chart%}
+                    <img src="{{ chart }}">
+                    {%endif%}
+                </div>
+
+        </section>
+
+
+    </div>
+    <div class="line2">
+    </div>
+
+    <section id="fotter">
+        <div class="fot">
+            <div class="aboutcon">
+                <footer class="footer-distributed">
+                    <div class="footer-left">
+                        <div class="foterlogo">
+
+                        </div>
+
+                        <p class="footer-company-name">
+
+                            <a style="text-decoration: none; color: white; font-size: 16px;"
+                                href="https://www.sentispot.com" target="_blank">Sentispot.com</a>
+                        </p>
+                    </div>
+                    <div class="footer-center">
+                        <div>
+                            <i class="fa fa-map-marker"></i>
+                            <p><span>8J6JM26M+2V</span> Chakdara Dir Lower</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-phone"></i>
+                            <p>03456987869</p>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope"></i>
+                            <p><a href="mailto:support@company.com">uzairwebd@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <p class="footer-company-about">
+                            <span>About the Developers</span>
+                            Welcome to SentiSpot! We are experts in Django, Python, Machine Learning, and Deep Learning.
+                            We develop innovative projects, including our flagship Fake News Detection System
+                            tool, leveraging advanced technologies to deliver impactful solutions.
+                            Visit our main site at <a style="text-decoration: none; color: white; font-size: 13px;"
+                                href="https://www.sentispot.com" target="_blank">Sentispot.com</a> to explore our
+                            projects and learn more about our work.
+                    </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
